@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="card mt-3">
+        <div class="card-body">
+  <div class="row">
+    <hr />
+    <app-data-polling
+      [rate]="rate"
+      (newRateChange)="onRateChange($event)"
+    ></app-data-polling>
+    <div>
+      <h4>Rate {{ cur1 }} / {{ cur2 }} : {{ rate }}</h4>
+    </div>
+    <hr />
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <h4>Fixed Rate :</h4>
+    </div>
+    <div class="col-8 input-group mb-3">
+      <input
+        type="text"
+        [ngModel]="fixedRate"
+        class="form-control"
+        placeholder="Fixed Rate"
+        (ngModelChange)="calculateCurrencyWithFixedRate($event)"
+      />
+    </div>
+  </div>
+
+  <div class="row col-12">
+   <h4> {{ cur1 }} </h4>
+    <label class="switch mx-3">
+        <input type="checkbox" id="flexSwitchCheckChecked"
+        [(ngModel)]="toggle"
+        (change)="toggleCurrency()">
+        <span class="slider round"></span>
+      </label>
+    
+    <h4>{{ cur2 }} </h4>
+  </div>
+  <div class="row">
+    <div class="col-4">
+        <h4>Amount :</h4>
+      </div>
+      <div class="col-8 input-group mb-3">
+      <input
+        type="text"
+        [ngModel]="amount"
+        (ngModelChange)="calculateCurrency($event)"
+        class="form-control"
+      />
+    </div>
+    <hr />
+  </div>
+  <div class="row">
+    <div class="col-4"><h4>Result :</h4></div> <div class="col-8"><h4>{{ result }}</h4></div>
+  </div>
+ 
+</div>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-body">
+            <div class="row">
+                <ul class="list-group col-12">
+                  <li class="list-group-item" *ngFor="let history of historyTab">
+                    <span> Rate : {{ history.rate }}</span>
+                    <span> Fixed Rate : {{ history.fixedRate }}</span>
+                    <br />
+                    <span
+                      >{{ history.amount }} {{ history.currency1 }} = {{ history.result }}
+                      {{ history.currency2 }}</span
+                    >
+                  </li>
+                </ul>
+              </div>
+        </div></div>
+</div>
